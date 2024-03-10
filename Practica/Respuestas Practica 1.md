@@ -76,8 +76,10 @@
 	Calcular la distancia máxima (X) entre receptor y transmisor suponiendo un factor de diseño FD = 10 dB (margen de diseño M), empleándose un conector en el transmisor y otro en el receptor. Repetir el cálculo para una FO cuya atenuación es de 0,2 dB/km.
 
 	Para ambos casos planteamos la ecuacion $P - 2C - F \cdot X = S + M$ (asumimos que hay 2 conectores)
+	
 	Caso 1:
 	$3 - 1.2 - 1 \cdot X = -10 + 10$  -> $X = 1.8 [km]$
+	
 	Caso 2:
 	$3 - 1.2 - 0.2 \cdot X = -10 + 10$ -> $X = 9[km]$
 
