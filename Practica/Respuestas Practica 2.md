@@ -16,7 +16,7 @@
 
 ### Solucion
 NOTA: use la pagina https://www.autodraw.com/ para el dibujo
-![[Pasted image 20240312155110.png]]
+![](Pasted%20image%2020240312155731.png)
 Supuestos:
 - Cada oficina tiene una sola roseta RJ45
 - Entre pisos hay 3m
