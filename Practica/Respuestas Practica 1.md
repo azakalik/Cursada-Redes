@@ -101,15 +101,14 @@
 
 
 11) Ud. se encuentra trabajando en su casa con Arnet como ISP y quiere acceder a www.miempresa.com.ar con su navegador. Marque en orden (con números desde 1 en adelante) los ítems que participan en la resolución del nombre:
-    a. Servidor de DNS de dominio miempresa.com.ar
-    b. Servidor de DNS de dominio www.miempresa.com.ar
-    c. NIC.AR
-    d. Servidor de DNS de Arnet
-    e. Root server
-    f. Navegador
-    g. Archivo Hosts
-
-	COMPLETAR
+    a. Navegador. Primero se consulta en el cache del navegador para ver si esta la IP
+	b. Archivo hosts
+	c. ISP (o servidor DNS arnet)
+	(suponemos que arnet no lo puede resolver)
+	d. Root server
+	e. NIC.AR -> me resuelve los dominios .ar (dentro de ellos .com.ar)
+	f. Servidor de miempresa.com.ar
+	g. Servidor de www.miempresa.com.ar (que generalmente es el mismo que el de miempresa.com.ar, en cuyo caso seria un registro CNAME en miempresa.com.ar, pero puede ser distinto). Puedo pensar que www. es un subdominio de miempresa.com.ar, y que tambien existen otros como api.miempresa.com.ar.
 
 
 12) Dado un canal de transmisión de datos coaxil con una atenuación a la frecuencia de operación de 0,9 dB/100 m y donde la sensibilidad del receptor es -15 dBm. Calcular la potencia mínima que deberá tener el transmisor si la longitud del coaxil es de 1200 m. Indicar cuál es la potencia mínima del transmisor en miliwatts.
@@ -120,9 +119,9 @@
 	- Longitud del coaxil: 1200 m
 	
 	Solucion:
-	- Asumo que la potencia del transmisor es de X dBm
-	- Planteo la ecuacion $X - 1200 x (0.9 / 100) > -15 dBm$
-	- Despejando, me queda que $X > (12 x 0.9) - 15$
+	- Asumo que la potencia del transmisor es de $X dBm$
+	- Planteo la ecuacion $X - 1200 \cdot (0.9 / 100) > -15 dBm$
+	- Despejando, me queda que $X > (12 \cdot 0.9) - 15$
 	- Llegamos a que $X > -4.2 dBm$
 	- Para convertir dBm a mW, utlizamos la formula:
 	$$
