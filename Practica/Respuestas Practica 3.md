@@ -25,3 +25,27 @@
 - Ejecutando nuevamente `show running-config` vemos: ![](Pasted%20image%2020240319153811.png)
 - Finalmente, habilitamos la VLAN con el comando `no shutdown`.
 - NOTA: no pareceria que se pueda asignarle una IP a alguna VLAN del switch desde GUI, parece que es solo por CLI.
+# Ejercicio 4
+Aprendemos que `telnet` viene desactivado por default en el switch, hay que activarlo manualmente
+# Ejercicio 6
+Aprendemos que ingresando `?` en la terminal, podemos ver los comandos posibles del modo en el que estemos
+Ademas, el comando `description` nos sirve para darle una descripcion a un puerto de un switch, como se ve abajo
+```
+Switch(config)#interface FastEthernet0/1
+
+Switch(config-if)#description File_Server
+
+Switch(config-if)#exit
+
+Switch(config)#exit
+
+Switch#show running-config
+...
+
+interface FastEthernet0/1
+
+description File_Server
+```
+# Ejercicio 8
+El comando `write erase` nos deja borrar la NVRAM de un switch, que es donde se guardan todas las configuraciones.
+El comando `reload` nos permite reiniciar un switch.
