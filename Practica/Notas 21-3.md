@@ -26,7 +26,7 @@ Queda algo asi en la config del router:
 - Cada router declara cuales son las redes que tiene conectadas (OSPF)
 - Ejecuto los comandos
 ```
-Router(config)#route ospf 1
+Router(config)#router ospf 1
 
 Router(config-router)#network 192.168.0.0 0.0.0.255 area 1
 

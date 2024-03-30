@@ -42,5 +42,5 @@ El equipo que nos dan tiene:
 - Funciona en capa 2, a nivel switch
 - Esto sirve para achicar dominios de colision y problemas de seguridad
 - Puedo eliminar y agregar VLANs segun sea necesario para adaptarme a cambios en la organizacion (sin tener que estar tocando cables). Esto me da buena escalabilidad
-- Trunk mode: para poder etiquetar sobre el mismo puerto del switch distintas VLAN, y pasar multiples VLAN por el mismo enlace
+- **Trunk mode**: para poder etiquetar sobre el mismo puerto del switch distintas VLAN, y pasar multiples VLAN por el mismo enlace. Si el puerto no esta en modo trunk, solo puede pasar una VLAN por ahi
 - Para algunos casos conviene usar subredes y para otros casos conviene usar VLAN

@@ -44,6 +44,9 @@ switchport access vlan 2
 ...
 ```
 # Ejercicio 5
+**¿Cómo puedo hacer una VLAN de 27 Hosts utilizando switches 2960?**
+Cada switch 2960 soporta hasta 24 hosts. Para hacer una VLAN con 27 hosts, solo haria falta hacer stacking de estos switches.
+
 NOTA: dentro del modo `config`, los comandos `interface vlan 1` y `vlan 1` NO son equivalentes. El primero nos permite asignarle una IP a la vlan, mientras que el segundo nos permite cambiar otros ajustes como ponerle un nombre.
 Hacemos el siguiente diagrama de red:
 ![](Pasted%20image%2020240326155249.png)
@@ -72,12 +75,95 @@ show running-config
 ```
 ## Parte C
 **¿Con qué Host tiene visibilidad el Host PC3? ¿Por qué?**
-El host PC3 no tiene visibilidad con ninguna otra PC, porque esta en la red 10.1.0.0/16 pero pertenece a la vlan 2
-# Partes D, E
+El host PC3 no se puede comunicar con ningun otro host, dado que el puerto que comunica los switches (GigabitEthernet0/1) esta en **access mode** en vez de **trunk mode**.
+## Partes D, E
 **Configure en el Switch 0 para que el puerto Gig0/1 sea del tipo trunk, de la siguiente manera: Ingrese a modo configuración de la interface Gig0/1 y ejecute el comando `switchport mode trunk`**
 
-El comando switchport mode trunk en un switch Cisco configura el puerto del switch en modo Trunk. Los puertos Trunk se utilizan para conectar switches entre sí y pueden transportar múltiples VLANs entre los switches1. Los puertos Trunk deben recibir tramas etiquetadas con la asignación de VLAN de cada trama.
+El comando switchport mode trunk en un switch Cisco configura el puerto del switch en modo Trunk. Los puertos Trunk se utilizan para conectar switches entre sí y pueden transportar múltiples VLANs entre los switches. Los puertos Trunk deben recibir tramas etiquetadas con la asignación de VLAN de cada trama.
 
 En otras palabras, un puerto configurado en modo Trunk puede llevar el tráfico de varias VLANs a través de un solo enlace físico. Esto es útil en situaciones donde tienes múltiples switches y necesitas llevar el tráfico de varias VLANs a través de ellos.
 
 Es importante tener en cuenta que los puertos Trunk utilizan etiquetas (o “tags”) para identificar a qué VLAN pertenece cada trama de datos. Este proceso se conoce como "encapsulación 802.1Q".
+## Parte F
+
+# Ejercicio 6
+preguntar este y el 5. yo creo que PC3 arranca en VLAN2 en el punto a, pero britu piensa que PC3 arranca en VLAN1
+# Ejercicio 7
+**Utilizando 2 switches 2960, se desea armar un LAN con 3 VLAN. Los Host pueden estar conectados a cualquiera de los 2 switches. Realice un ejemplo que cumpla con las condiciones anteriores.**
+Creo las VLAN con el comando `vlan {numero}`, les asigno un nombre con `name {nombre}`
+Le asigno a cada puerto la vlan que quiero con el comando `switchport access vlan {numero}` dentro de cada interfaz.
+# Ejercicio 8
+Existen 5 tipos de password en un equipo CISCO: El de CONSOLA, AUXILIAR, VTY (TELNET), ENABLE PASSWORD y ENABLE SECRET. Los últimos dos se pueden setear para impedir el acceso a los modos privilegiados de configuración y los primeros tres se utilizan para permitir el acceso a la configuración del equipo mediante la Consola, el puerto auxiliar o Telnet.
+## Configurar acceso por Telnet
+Lo primero que hacemos es crear una red con un switch 2960 (IP 192.168.0.1/24) y un host (IP 192.168.0.2/24)
+Luego, configuramos la clave **itba** para acceso por telnet, ejecutando los siguientes comandos:
+```
+Switch#configure terminal
+
+Enter configuration commands, one per line. End with CNTL/Z.
+
+Switch(config)#line ?
+
+<0-16> First Line number
+
+console Primary terminal line
+
+vty Virtual terminal
+
+Switch(config)#line vty 0 15
+
+Switch(config-line)#login
+
+% Login disabled on line 1, until 'password' is set
+
+...
+
+% Login disabled on line 16, until 'password' is set
+
+Switch(config-line)#password itba
+
+Switch(config-line)#exit
+```
+Ejecutamos los siguientes comandos desde la terminal de nuestro host:
+```
+C:\>telnet 192.168.0.1
+
+Trying 192.168.0.1 ...Open
+User Access Verification
+Password:
+
+Switch>
+```
+Podemos ver que luego de ingresar la clave **itba**, ya accedimos a nuestro switch. Sin embargo, cuando intentamos ingresar al modo privilegiado, no nos deja y aparece el siguiente error:
+```
+Switch>enable
+
+% No password set.
+```
+# Ejercicio 9
+Tras ejecutar en el switch
+```
+Switch#conf t
+
+Enter configuration commands, one per line. End with CNTL/Z.
+
+Switch(config)#enable secret mipass
+```
+Podemos acceder desde el host de la siguiente forma
+```
+C:\>telnet 192.168.0.1
+
+Trying 192.168.0.1 ...Open
+
+User Access Verification
+
+Password:
+
+Switch>enable
+
+Password:
+
+Switch#
+```
+Ingresando primero la clave **itba** y luego **mipass**
+# Ejercicio 10
