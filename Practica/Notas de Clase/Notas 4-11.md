@@ -24,21 +24,26 @@ Todos los siguientes son protocolos telefonicos que hacen lo mismo pero de maner
 - Dentro de la VM ubuntu, configuro la red en modo bridge para que pueda tener una IP propia dentro de la red de su casa
 - Instalamos asterisk con `apt install asterisk`, en la clase instala la version 18.10
 - `apt-cache search asterisk` nos muestra las librerias adicionales que podemos descargar para asterisk. Viene con un monton de audios de ejemplo, como `asterisk-core-sounds-en`.
-- Instalamos los paquetes de clase con `apt install asterisk-core-sounds-es asterisk-core-sounds-es-g722 asterisk-core-sounds-es-gsm asterisk-core-sounds-es-wav asterisk-prompt-es`
+- Instalamos los paquetes de clase con 
+```
+apt install asterisk-core-sounds-es asterisk-core-sounds-es-g722 asterisk-core-sounds-es-gsm asterisk-core-sounds-es-wav asterisk-prompt-es
+```
 - Vemos los paquetes que tengo instalados con `dpkg -l asterisk*`
 - Hago `cd /usr/share/asterisk/sounds/`, en donde voy a tener todos los sonidos que instalamos
 - Con `service asterisk status` vemos que el servicio esta corriendo. Vamos a ver qu ehay dos errores (rc_read_config). Es porque por defecto asterisk trata de acceder al archivo radiusclient.conf, que esta en otro directorio.
-- Vamos a entrar a dos archivos de configuracion, y los vamos a arreglar para solucionar el error. Primero vamos a `/etc/radcli` y tiramos los siguientes comandos para hacer copias de seguridad
+- Vamos a entrar a dos archivos de configuracion, y los vamos a arreglar para solucionar el error. Primero ejecutamos los siguientes comandos para hacer copias de seguridad
   ```
   cp /etc/asterisk/cel.conf /etc/asterisk/cel.conf.copia
   cp /etc/asterisk/cdr.conf /etc/asterisk/cdr.conf.copia
   ```
-  - Ahora que tenemos las copias de seguridad, modificamos `cel.conf`. Vamos a descomentar la linea de la foto y ponemos la ruta que corresponde (`/etc/radiusclient`). Hacemos lo mismo con `cdr.conf`.![](Pasted%20image%2020240411184713.png)
+  - Ahora que tenemos las copias de seguridad, modificamos `cel.conf`. Vamos a descomentar la linea de la foto y ponemos la ruta que corresponde (`/etc/radiusclient`). Hacemos lo mismo con `cdr.conf`. **NOTA: en la practica hicimos esto, pero en Ubuntu Server tuve que cambiar el path por `/etc/radcli/radiusclient.conf` (ver mi TP7)**
+  ![](Pasted%20image%2020240411184713.png)
   - Ahora ejecutamos `service asterisk restart` y vemos que solucionamos uno de los dos errores. El error restante no lo solucionamos porque no hace falta.
   - En `/etc/asterisk`, vamos a trabajar con `sip.conf` y `extensions.conf`. En el `sip.conf` vamos a configurar los usuarios y terminales ('beto' y 'kevin' serian dos entradas aca), y en `extensions.conf` ponemos como rutear cada usuario. El core de lo que vamos a trabajar va a ser `sip.conf`.
   - Si tenemos multiples dispositivos conectados con el numero de telefono 10, cuando se haga una llamada al 10 todos van a sonar.
   - Todo va por UDP
-  - Nos queda como tarea averiguar que son estas cosas en el `sip.conf`![](Pasted%20image%2020240411190410.png)
+  - Nos queda como tarea averiguar que son estas cosas en el `sip.conf`
+  ![](Pasted%20image%2020240411190410.png)
   - Borramos entero el archivo `sip.conf` y creamos los usuarios de la siguiente forma
   ```
   [usuario](!)
