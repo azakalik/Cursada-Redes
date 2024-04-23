@@ -1,5 +1,7 @@
 1) ¿Cuál es el rango de direcciones de una red Clase C?
-   1-126
+	Las redes de clase A usan una máscara de subred predeterminada de 255.0.0.0 y tienen de 0 a 127 como su primer octeto. La dirección 10.52.36.11 es una dirección de clase A. Su primer octeto es 10, que está entre 1 y 126, ambos incluidos.
+	Las redes de clase B usan una máscara de subred predeterminada de 255.255.0.0 y tienen de 128 a 191 como su primer octeto. La dirección 172.16.52.63 es una dirección de clase B. Su primer octeto es 172, que está entre 128 y 191, ambos inclusive.
+	Las redes de clase C usan una máscara de subred predeterminada de 255.255.255.0 y tienen de 192 a 223 como su primer octeto. La dirección 192.168.123.132 es una dirección de clase C. Su primer octeto es 192, que está entre 192 y 223, ambos incluidos.
    
    
 2) ¿Qué protocolo es utilizado para averiguar la dirección de hardware de un dispositivo local?
@@ -22,12 +24,6 @@
 	a. Telnet es un protocolo de red utilizado para acceder y controlar dispositivos remotos a través de una red. Telnet utiliza un protocolo de terminal virtual y no está asociado con ICMP. c. ARP (Protocolo de Resolución de Direcciones) se utiliza para mapear direcciones IP a direcciones MAC en una red local. ARP opera en la capa de enlace de datos y no depende de ICMP para su funcionamiento.
 
 5) ¿Cuáles de las siguientes frases son verdaderas?
-   a. La dirección de broadcast de MAC son todos ceros. FALSO
-   b. Las direcciones MAC están definidas en la capa de red. FALSO
-   c. Las direcciones MAC son utilizadas por los switch para tomar decisiones de forwarding y filtering. FALSO
-   d. Las direcciones MAC son un esquema jerárquico de direcciones. FALSO
-
-
    a. La dirección de broadcast de MAC son todos ceros.
    b. Las direcciones MAC están definidas en la capa de red.
    c. Las direcciones MAC son utilizadas por los switch para tomar decisiones de forwarding y filtering.
